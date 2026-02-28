@@ -145,7 +145,6 @@ export HTTPS_PROXY="http://127.0.0.1:6152"
 export PATH="$HOME/.local/bin:$PATH"
 
 ## Setting sscc
-alias sscc='ANTHROPIC_BASE_URL="https://claude2.sssaicode.com/api" ANTHROPIC_AUTH_TOKEN="sk-sssaicode-eb34fc80a7bc3f372f4124dc2019bad266ae9e522e88bc30fdeed0eb53e4c85c"  claude --dangerously-skip-permissions'
 alias cc='claude --dangerously-skip-permissions'
 alias gm='NODE_OPTIONS="--no-deprecation" gemini'
 ### --resume latest

@@ -1,0 +1,637 @@
+# ============================================================================
+# Ghostty 配置文件
+# 官方文档: https://ghostty.org/docs/config
+# 运行 `ghostty +show-config --default --docs` 查看所有配置选项
+# 按 Cmd+Shift+, 重新加载配置 (部分配置需要重启才能生效)
+# ============================================================================
+
+# ============================================================================
+# 字体设置
+# ============================================================================
+
+# 主字体, 使用 `ghostty +list-fonts` 查看可用字体
+font-family = Monaco Nerd Font
+#font-family = GeistMono Nerd Font Mono
+
+# 粗体/斜体/粗斜体字体 (留空则自动从主字体查找变体)
+# font-family-bold =
+# font-family-italic =
+# font-family-bold-italic =
+
+# 字体样式, 用于选择字体的特定样式 (如 "Heavy", "Light" 等)
+# 设置为 false 可完全禁用该样式
+# font-style = default
+# font-style-bold = default
+# font-style-italic = default
+# font-style-bold-italic = default
+
+# 合成字体样式: 当字体没有原生粗体/斜体时, 是否合成
+# 可用值: true, false, no-bold, no-italic, no-bold-italic (逗号分隔)
+# font-synthetic-style = bold,italic,bold-italic
+
+# 字体特性 (OpenType features), 如禁用连字: -calt,-liga,-dlig
+# font-feature =
+
+# 字号 (单位: 点), 支持小数
+font-size = 15
+
+# 可变字体的变体轴设置, 格式: id=value (如 wght=400)
+# font-variation =
+# font-variation-bold =
+# font-variation-italic =
+# font-variation-bold-italic =
+
+# 强制特定 Unicode 码点使用指定字体, 格式: U+XXXX=fontname
+# CJK 字符使用 PingFang SC，避免 font-thicken 导致粗细不一致
+font-codepoint-map = U+4E00-U+9FFF=PingFang SC
+font-codepoint-map = U+3400-U+4DBF=PingFang SC
+font-codepoint-map = U+3000-U+303F=PingFang SC
+font-codepoint-map = U+FF00-U+FFEF=PingFang SC
+
+#font-codepoint-map = U+4E00-U+9FFF=Sarasa Term SC
+#font-codepoint-map = U+3400-U+4DBF=Sarasa Term SC
+#font-codepoint-map = U+3000-U+303F=Sarasa Term SC
+#font-codepoint-map = U+FF00-U+FFEF=Sarasa Term SC
+
+# 加粗字体笔画 (仅 macOS)
+font-thicken = true
+
+# 加粗笔画强度 (0-255), 仅在 font-thicken=true 时生效
+font-thicken-strength = 255
+
+# 字体整形断点, 用于控制连字行为, 可用值: cursor
+# font-shaping-break = cursor
+
+# Alpha 混合颜色空间: native, linear, linear-corrected
+# native 字体更粗，linear-corrected 更清晰但偏细
+alpha-blending = linear-corrected
+
+# 字体度量调整 (像素或百分比), 用于微调字体显示
+adjust-cell-width = -1
+adjust-cell-height = 1
+# adjust-font-baseline =
+# adjust-underline-position =
+# adjust-underline-thickness =
+# adjust-strikethrough-position =
+# adjust-strikethrough-thickness =
+# adjust-overline-position =
+# adjust-overline-thickness =
+# adjust-cursor-thickness =
+# adjust-cursor-height =
+# adjust-box-thickness =
+# adjust-icon-height =
+
+# 字形宽度计算方法: unicode (标准), legacy (兼容旧程序)
+# grapheme-width-method = unicode
+
+# FreeType 加载标志 (仅 Linux): hinting, force-autohint, monochrome, autohint
+# freetype-load-flags = hinting,no-force-autohint,no-monochrome,autohint
+
+# ============================================================================
+# 主题和颜色 (适配自 Alacritty 配色)
+# ============================================================================
+
+# 使用预设主题, 运行 `ghostty +list-themes` 查看可用主题
+# 支持 light:主题,dark:主题 格式自动切换
+# theme =
+
+# 背景色 (十六进制 #RRGGBB 或 X11 颜色名)
+# Alacritty: colors.primary.background = #15141b
+background = 15141b
+
+# 前景色 (文字颜色)
+# Alacritty: colors.primary.foreground = #edecee
+foreground = edecee
+
+# 背景图片路径 (PNG/JPEG)
+# background-image =
+
+# 背景图片不透明度 (相对于 background-opacity)
+# background-image-opacity = 1
+
+# 背景图片位置: top-left, top-center, top-right, center-left, center,
+#               center-right, bottom-left, bottom-center, bottom-right
+# background-image-position = center
+
+# 背景图片适应方式: contain, cover, stretch, none
+# background-image-fit = contain
+
+# 是否平铺背景图片
+# background-image-repeat = false
+
+# 选中文字的前景/背景色
+# Alacritty: colors.selection.background = #3e4451, text = "CellForeground"
+# selection-foreground = (留空与 Alacritty text="CellForeground" 行为一致)
+selection-background = 3e4451
+
+# 输入时是否清除选择
+# selection-clear-on-typing = true
+
+# 复制后是否清除选择
+# selection-clear-on-copy = false
+
+# 最小对比度 (1-21), 1 表示无限制
+# minimum-contrast = 1
+
+# 调色板 (0-255), 格式: N=#RRGGBB
+# Normal colors (0-7) — 来自 Alacritty: colors.normal.*
+palette = 0=#110f18
+palette = 1=#ff6767
+palette = 2=#61ffca
+palette = 3=#ffca85
+palette = 4=#a277ff
+palette = 5=#a277ff
+palette = 6=#61ffca
+palette = 7=#edecee
+
+# Bright colors (8-15) — 来自 Alacritty: colors.bright.*
+palette = 8=#4d4d4d
+palette = 9=#ff6767
+palette = 10=#61ffca
+palette = 11=#ffca85
+palette = 12=#a277ff
+palette = 13=#a277ff
+palette = 14=#61ffca
+palette = 15=#edecee
+
+# ============================================================================
+# 光标设置
+# ============================================================================
+
+# 光标颜色
+# Alacritty: colors.cursor.cursor = #87CEEB (天蓝色)
+cursor-color = 87CEEB
+
+# 光标不透明度 (0-1)
+# cursor-opacity = 1
+
+# 光标样式: block, bar, underline, block_hollow
+# Alacritty: cursor.style.shape = "Beam" → Ghostty: bar
+cursor-style = bar
+
+# 光标闪烁: true, false, 或留空 (尊重 DEC Mode 12)
+cursor-style-blink = true
+
+# 光标下文字颜色
+# cursor-text =
+
+# 允许 Alt+Click 移动光标 (需要 shell integration)
+# cursor-click-to-move = true
+
+# ============================================================================
+# 鼠标设置
+# ============================================================================
+
+# 打字时隐藏鼠标
+# mouse-hide-while-typing = false
+
+# 滚动到底部的触发条件: keystroke, output (逗号分隔)
+# scroll-to-bottom = keystroke,no-output
+
+# 程序是否能检测 Shift+鼠标点击: true, false, always, never
+# mouse-shift-capture = false
+
+# 鼠标滚轮倍数, 可用 precision: 和 discrete: 前缀分别设置
+# mouse-scroll-multiplier = precision:1,discrete:3
+
+# ============================================================================
+# 窗口设置
+# ============================================================================
+
+# 水平内边距 (像素), 可用逗号分隔设置左右不同值
+# Alacritty: window.padding.x = 26
+window-padding-x = 26
+
+# 垂直内边距 (像素), 可用逗号分隔设置上下不同值
+# Alacritty: window.padding.y = 26
+window-padding-y = 26,26
+
+# 自动平衡四边多余空间
+# window-padding-balance = false
+
+# 内边距区域颜色: background, extend, extend-always
+# window-padding-color = background
+
+# 背景不透明度 (0-1), macOS 原生全屏时强制为 1
+background-opacity = 0.94
+
+# 背景不透明度是否应用到所有单元格 (包括有背景色的)
+# background-opacity-cells = false
+
+# 背景模糊: false, true, 或非负整数 (推荐 20, 数值越大越模糊)
+background-blur = false
+
+# 非焦点分屏的不透明度 (0.15-1)
+# unfocused-split-opacity = 0.7
+
+# 非焦点分屏的覆盖颜色
+# unfocused-split-fill =
+
+# 分屏分割线颜色
+# split-divider-color =
+
+# 窗口装饰: none, auto, client, server, true, false
+window-decoration = true
+
+# 窗口标题栏字体 (GTK)
+# window-title-font-family =
+
+# 窗口副标题 (GTK): false, working-directory
+# window-subtitle = false
+
+# 窗口主题: auto, system, light, dark, ghostty
+# window-theme = auto
+
+# 颜色空间: srgb, display-p3 (仅 macOS)
+window-colorspace = display-p3
+
+# 初始窗口大小 (网格单元数)
+# Alacritty: window.dimensions.columns = 170, lines = 50
+window-width = 170
+window-height = 50
+
+# 初始窗口位置 (像素, 仅 macOS)
+# window-position-x =
+# window-position-y =
+
+# 垂直同步: 减少撕裂但可能增加输入延迟 (仅 macOS)
+# window-vsync = true
+
+# 新窗口/标签页是否继承当前工作目录
+# window-inherit-working-directory = true
+
+# 新窗口/标签页是否继承字号
+# window-inherit-font-size = true
+
+# 窗口状态保存: default, never, always (仅 macOS)
+window-save-state = always
+
+# 按网格单元调整窗口大小 (仅 macOS)
+# window-step-resize = false
+
+# 新标签页位置: current, end
+# window-new-tab-position = current
+
+# 显示标签栏: always, auto, never (GTK)
+# window-show-tab-bar = auto
+
+# 窗口标题栏背景色 (GTK, 需 window-theme=ghostty)
+# window-titlebar-background =
+
+# 窗口标题栏前景色 (GTK, 需 window-theme=ghostty)
+# window-titlebar-foreground =
+
+# 窗口启动时最大化
+# maximize = false
+
+# 窗口启动时全屏
+fullscreen = false
+
+# 强制窗口标题 (留空则由程序控制)
+# title =
+
+# ============================================================================
+# macOS 特定设置
+# ============================================================================
+
+# 非原生全屏: false, true, visible-menu, padded-notch
+# 注意: 非原生全屏不支持标签页
+macos-non-native-fullscreen = false
+
+# 窗口按钮 (红绿灯) 可见性: visible, hidden
+# macos-window-buttons = visible
+
+# 标题栏样式: native, transparent, tabs, hidden
+# macos-titlebar-style = transparent
+
+# 标题栏代理图标: visible, hidden
+# macos-titlebar-proxy-icon = visible
+
+# Dock 拖放行为: new-tab, window
+# macos-dock-drop-behavior = new-tab
+
+# Option 键作为 Alt: true, false, left, right, 或留空 (自动检测)
+# macos-option-as-alt =
+
+# 窗口阴影
+# macos-window-shadow = true
+
+# 隐藏 Dock 和应用切换器中的图标: never, always
+# macos-hidden = never
+
+# 自动安全输入 (检测到密码提示时)
+# macos-auto-secure-input = true
+
+# 安全输入指示器
+# macos-secure-input-indication = true
+
+# 应用图标: official, blueprint, chalkboard, microchip, glass, holographic,
+#           paper, retro, xray, custom, custom-style
+macos-icon = official
+
+# 自定义图标路径 (需 macos-icon=custom)
+# macos-custom-icon =
+
+# 图标边框材质: aluminum, beige, plastic, chrome
+# macos-icon-frame = aluminum
+
+# 图标幽灵颜色 (需 macos-icon=custom-style)
+# macos-icon-ghost-color =
+
+# 图标屏幕颜色/渐变 (需 macos-icon=custom-style)
+# macos-icon-screen-color =
+
+# 允许 macOS Shortcuts 控制 Ghostty: ask, allow, deny
+# macos-shortcuts = ask
+
+# ============================================================================
+# Linux/GTK 特定设置
+# ============================================================================
+
+# OpenGL 调试日志
+# gtk-opengl-debug = false
+
+# 单实例模式: true, false, detect
+# gtk-single-instance = detect
+
+# 显示完整 GTK 标题栏
+# gtk-titlebar = true
+
+# 标签栏位置: top, bottom, hidden
+# gtk-tabs-location = top
+
+# 最大化时隐藏标题栏
+# gtk-titlebar-hide-when-maximized = false
+
+# 工具栏样式: flat, raised, raised-border
+# gtk-toolbar-style = raised
+
+# 标题栏样式: native, tabs
+# gtk-titlebar-style = native
+
+# 宽标签页 (Gnome 风格)
+# gtk-wide-tabs = true
+
+# 自定义 CSS 文件路径
+# gtk-custom-css =
+
+# Linux cgroup 隔离: never, always, single-instance
+# linux-cgroup = never
+
+# cgroup 内存限制 (字节)
+# linux-cgroup-memory-limit =
+
+# cgroup 进程数限制
+# linux-cgroup-processes-limit =
+
+# cgroup 初始化失败时是否退出
+# linux-cgroup-hard-fail = false
+
+# ============================================================================
+# Shell 和命令
+# ============================================================================
+
+# 启动命令 (通常是 shell)
+#command = /opt/homebrew/bin/zsh --login -c 'tmux new-session -A -s "🫧 local"'
+
+# 首次启动命令 (仅第一个窗口)
+# Alacritty: terminal.shell.program + args → zsh + tmux
+initial-command = /opt/homebrew/bin/zsh --login -c 'tmux new-session -A -s "🫧 local"'
+
+# 额外环境变量, 格式: env = KEY=VALUE
+# env =
+
+# 启动时发送到命令的输入, 格式: raw:string 或 path:filepath
+# input =
+
+# 命令退出后保持终端打开
+# wait-after-command = false
+
+# 异常退出判定时间 (毫秒)
+# abnormal-command-exit-runtime = 250
+
+# 工作目录: 绝对路径, home, 或 inherit
+# working-directory =
+
+# ============================================================================
+# Shell Integration
+# ============================================================================
+
+# 自动注入 shell integration: none, detect, bash, elvish, fish, zsh
+# shell-integration = detect
+
+# shell integration 功能: cursor, sudo, title, ssh-env, ssh-terminfo, path
+# 前缀 no- 禁用特定功能
+shell-integration-features = no-cursor,no-sudo,title,no-ssh-env,no-ssh-terminfo,path
+
+# ============================================================================
+# 终端行为
+# ============================================================================
+
+# 关闭确认: true, false, always
+confirm-close-surface = false
+
+# 最后一个窗口关闭后退出 (macOS 默认 false, Linux 默认 true)
+# quit-after-last-window-closed = false
+
+# 最后窗口关闭后延迟退出 (最小 1s, 仅 Linux)
+# quit-after-last-window-closed-delay =
+
+# 是否创建初始窗口
+# initial-window = true
+
+# 撤销超时 (仅 macOS)
+# undo-timeout = 5s
+
+# 回滚缓冲区大小 (字节)
+# scrollback-limit = 10000000
+
+# 图像存储限制 (字节, 0 禁用图像协议)
+# image-storage-limit = 320000000
+
+# ============================================================================
+# 剪贴板
+# ============================================================================
+
+# 程序读取剪贴板权限: ask, allow, deny
+clipboard-read = allow
+
+# 程序写入剪贴板权限: ask, allow, deny
+clipboard-write = allow
+
+# 复制时去除尾部空白
+# clipboard-trim-trailing-spaces = true
+
+# 粘贴不安全文本时确认
+# clipboard-paste-protection = true
+
+# 括号粘贴模式是否视为安全
+# clipboard-paste-bracketed-safe = true
+
+# 选中即复制: true, false, clipboard
+# Alacritty: selection.save_to_clipboard = true
+copy-on-select = true
+
+# 右键行为: context-menu, paste, copy, copy-or-paste, ignore
+# right-click-action = context-menu
+
+# 双击/三击间隔 (毫秒, 0 使用系统默认)
+# click-repeat-interval = 0
+
+# ============================================================================
+# 链接
+# ============================================================================
+
+# 启用 URL 匹配 (Ctrl/Cmd+悬停)
+# link-url = true
+
+# 链接预览: true, false, osc8
+# link-previews = true
+
+# ============================================================================
+# 快捷键
+# ============================================================================
+# 格式: keybind = trigger=action
+# 触发器: 修饰键+按键 (如 ctrl+shift+c), 支持序列 (如 ctrl+a>n)
+# 修饰键: shift, ctrl/control, alt/opt/option, super/cmd/command
+# 特殊前缀: global: (全局), all: (所有终端), unconsumed: (不消耗),
+#           performable: (仅在可执行时消耗)
+# 使用 keybind=clear 清除所有快捷键
+
+# Cmd+R: 清屏 (对应 Alacritty chars=\f + ClearHistory 双动作)
+# 注意: Ghostty 不支持单键绑定同时发送字符和触发 action
+#       建议在 tmux/zsh 中额外绑定 ClearHistory, 或拆分为两个快捷键
+keybind = cmd+r=clear_screen
+
+# Cmd+W: 关闭当前 surface (对应 Alacritty action=Hide)
+keybind = cmd+w=close_surface
+
+# Cmd+Shift+W: 退出 (对应 Alacritty action=Quit)
+keybind = cmd+shift+w=quit
+
+# Cmd+N: 新建窗口 (对应 Alacritty action=SpawnNewInstance)
+keybind = cmd+n=new_window
+
+# Cmd+T: 新建标签页 (对应 Alacritty action=CreateNewWindow)
+keybind = cmd+t=new_tab
+
+# Alt+Left: 按单词向左跳 (对应 Alacritty chars=\u001Bb)
+keybind = alt+left=esc:b
+
+# Alt+Right: 按单词向右跳 (对应 Alacritty chars=\u001Bf)
+keybind = alt+right=esc:f
+
+# Cmd+Left: 行首 (对应 Alacritty AppCursor 模式 chars=\u001BOH)
+keybind = cmd+left=esc:OH
+
+# Cmd+Right: 行尾 (对应 Alacritty AppCursor 模式 chars=\u001BOF)
+keybind = cmd+right=esc:OF
+
+# Cmd+Backspace: 删除整行 (对应 Alacritty chars=\u0015)
+keybind = cmd+backspace=esc:u0015
+
+# Alt+Backspace: 删除单词 (对应 Alacritty chars=\u001B\u007F)
+keybind = alt+backspace=esc:u001Bu007F
+
+# ============================================================================
+# Quick Terminal (快速终端)
+# ============================================================================
+
+# 位置: top, bottom, left, right, center
+# quick-terminal-position = top
+
+# 尺寸: 百分比 (如 50%) 或像素 (如 300px)
+# quick-terminal-size =
+
+# 窗口层级 (GTK Wayland): overlay, top, bottom, background
+# gtk-quick-terminal-layer = top
+
+# 屏幕选择: main, mouse, macos-menu-bar
+# quick-terminal-screen = main
+
+# 动画时长 (秒, 仅 macOS)
+# quick-terminal-animation-duration = 0.2
+
+# 失去焦点时自动隐藏
+# quick-terminal-autohide = true
+
+# macOS Spaces 行为: move, remain
+# quick-terminal-space-behavior = move
+
+# 键盘交互 (GTK Wayland): none, on-demand, exclusive
+# quick-terminal-keyboard-interactivity = on-demand
+
+# ============================================================================
+# 调整大小覆盖层
+# ============================================================================
+
+# 显示时机: always, never, after-first
+# resize-overlay = after-first
+
+# 位置: center, top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
+# resize-overlay-position = center
+
+# 显示时长
+# resize-overlay-duration = 750ms
+
+# ============================================================================
+# 其他设置
+# ============================================================================
+
+# 鼠标悬停聚焦分屏
+# focus-follows-mouse = false
+
+# 标题上报 (安全风险, 默认禁用)
+# title-report = false
+
+# OSC 颜色上报格式: none, 8-bit, 16-bit
+# osc-color-report-format = 16-bit
+
+# 允许 KAM 模式 (禁用键盘输入)
+# vt-kam-allowed = false
+
+# 自定义着色器路径 (GLSL)
+# custom-shader =
+
+# 着色器动画: true, false, always
+# custom-shader-animation = true
+
+# 响铃功能: system, audio, attention, title, border (逗号分隔, no- 前缀禁用)
+# bell-features = no-system,no-audio,attention,title,no-border
+
+# 响铃音频文件路径 (GTK)
+# bell-audio-path =
+
+# 响铃音量 (0-1, GTK)
+# bell-audio-volume = 0.5
+
+# 应用内通知: clipboard-copy, config-reload (GTK)
+# app-notifications = clipboard-copy,config-reload
+
+# 桌面通知
+# desktop-notifications = true
+
+# 粗体文字颜色: 颜色值 或 bright (使用亮色)
+# bold-color =
+
+# 淡色文字不透明度 (0-1)
+# faint-opacity = 0.5
+
+# TERM 环境变量
+# term = xterm-ghostty
+
+# ENQ 响应字符串
+# enquiry-response =
+
+# 异步后端 (Linux): auto, epoll, io_uring
+# async-backend = auto
+
+# 自动更新 (macOS): off, check, download
+# auto-update =
+
+# 更新渠道: stable, tip
+# auto-update-channel =
+
+# 额外配置文件 (支持 ? 前缀忽略不存在的文件)
+# config-file =
+

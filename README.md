@@ -17,6 +17,12 @@ wget https://github.com/thep0y/monaco-nerd-font/releases/download/v0.2.1/MonacoN
 
 ## Ghostty
 
+* install ghostty
+
+```shell
+brew install --cask ghostty
+```
+
 * 热加载配置
 
 ```shell

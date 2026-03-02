@@ -19,6 +19,14 @@ wget https://github.com/thep0y/monaco-nerd-font/releases/download/v0.2.1/MonacoN
 
 * install ghostty
 
+  - ubuntu
+
+```shell
+https://github.com/mkasberg/ghostty-ubuntu
+```
+
+  - macos
+
 ```shell
 brew install --cask ghostty
 ```

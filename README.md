@@ -37,3 +37,29 @@ brew install --cask ghostty
 Cmd+Shift+,
 ```
 
+## 安装 starship
+
+```shell
+brew install starship
+```
+
+* 取消 .zshrc 配置文件中的 oh-my-zsh 的主题
+
+```shell
+# 禁用 oh-my-zsh 自带 theme
+ZSH_THEME=""
+```
+
+* 添加 starship 加载
+
+```shell
+# Starship 作为最终 Prompt，放在 .zshrc 末尾
+eval "$(starship init zsh)"
+```
+
+* 加载 zshrc
+
+```shell
+source ~/.zshrc
+```
+

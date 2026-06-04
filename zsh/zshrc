@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -119,19 +112,18 @@ source $ZSH/oh-my-zsh.sh
 
 # user 
 DEFAULT_USER=$USER
+export LDAP_USER="zhihuanzhu"
+export LDAP_PASSWORD=""
+export Gitlab_Token=""
+export GRAFANA_TOKEN=""
+export VPN_CN_PASS='' 
+export VPN_US_PASS=''
 # Alacritty completion
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 ## Add GO Env
 export GOBIN=~/go/bin
 export PATH=$GOPATH:$GOBIN:$GOROOT/bin:$PATH
-
-## Add PostgreSQL Client
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-
-## Add TX Cloud Cli
-alias tccli="$HOME/Library/Python/3.9/bin/tccli"
-export PATH="/opt/homebrew/bin:$PATH"
 
 ## Grep Color
 alias grep='grep --color=auto'
@@ -141,16 +133,12 @@ alias grep='grep --color=auto'
 export HTTP_PROXY="http://127.0.0.1:6152"
 export HTTPS_PROXY="http://127.0.0.1:6152"
 
-## Cursor Cl
-export PATH="$HOME/.local/bin:$PATH"
-
 ## Setting sscc
-alias cc='claude --dangerously-skip-permissions'
-alias gm='NODE_OPTIONS="--no-deprecation" gemini'
+alias cc='CLAUDE_CODE_NO_FLICKER=1 claude --dangerously-skip-permissions'
 ### --resume latest
-
-# Added by Antigravity
-export PATH="/Users/jicki/.antigravity/antigravity/bin:$PATH"
 
 # Added by helm
 export PATH="/opt/homebrew/opt/helm@3/bin:$PATH"
+
+# Starship 必须放在最后，接管最终 Prompt
+eval "$(starship init zsh)"

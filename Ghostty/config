@@ -214,7 +214,7 @@ window-padding-x = 16
 # 垂直内边距 (像素), 可用逗号分隔设置上下不同值
 # Alacritty: window.padding.y = 26
 # [优化] 与左右留白统一为 16px；原值 26,26 可随时恢复
-window-padding-y = 16,16
+window-padding-y = 26,26
 
 # 自动平衡四边多余空间
 # window-padding-balance = false
@@ -255,7 +255,7 @@ window-decoration = true
 # 颜色空间: srgb, display-p3 (仅 macOS)
 # [优化] 主题颜色沿用 Alacritty 的普通 RGB 色值，sRGB 更接近其预期外观
 # [可选] 如果喜欢原来的 Display P3 显示效果，可改回 display-p3
-window-colorspace = srgb
+window-colorspace = display-p3
 
 # 初始窗口大小 (网格单元数)
 # Alacritty: window.dimensions.columns = 170, lines = 50

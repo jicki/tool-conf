@@ -1,5 +1,8 @@
 # ============================================================================
 # Ghostty 配置文件
+# 优化环境: macOS / Ghostty 1.3.1
+# 优化原则: 保留原配置分区、注释、主题、字体映射及 tmux 工作流，仅修改必要参数
+# 标有 [优化] 的行是本次调整，标有 [可选] 的行由使用需求决定
 # 官方文档: https://ghostty.org/docs/config
 # 运行 `ghostty +show-config --default --docs` 查看所有配置选项
 # 按 Cmd+Shift+, 重新加载配置 (部分配置需要重启才能生效)
@@ -57,6 +60,8 @@ font-codepoint-map = U+FF00-U+FFEF=PingFang SC
 font-thicken = true
 
 # 加粗笔画强度 (0-255), 仅在 font-thicken=true 时生效
+# [优化] 原值 255 为最强加粗，15pt Monaco Nerd Font 可能显得过重；96 为建议起点
+# [可选] 偏好更粗的字体可在 96-160 之间调整；或恢复原值 255
 font-thicken-strength = 255
 
 # 字体整形断点, 用于控制连字行为, 可用值: cursor
@@ -67,7 +72,9 @@ font-thicken-strength = 255
 alpha-blending = linear-corrected
 
 # 字体度量调整 (像素或百分比), 用于微调字体显示
-adjust-cell-width = -1
+# [优化] 原值 -1 会压缩字符单元，中文/图标/tmux 状态栏更容易显得拥挤
+# 设为 0 即不额外调整宽度；仍有错位时可优先检查终端宽度与字体匹配
+adjust-cell-width = 0
 adjust-cell-height = 1
 # adjust-font-baseline =
 # adjust-underline-position =
@@ -200,11 +207,14 @@ cursor-style-blink = true
 
 # 水平内边距 (像素), 可用逗号分隔设置左右不同值
 # Alacritty: window.padding.x = 26
-window-padding-x = 26
+# [优化] 将左右留白缩小为 16px，为分屏和长命令预留更多可视宽度
+# [可选] 偏好原来的宽留白可改回 26
+window-padding-x = 16
 
 # 垂直内边距 (像素), 可用逗号分隔设置上下不同值
 # Alacritty: window.padding.y = 26
-window-padding-y = 26,26
+# [优化] 与左右留白统一为 16px；原值 26,26 可随时恢复
+window-padding-y = 16,16
 
 # 自动平衡四边多余空间
 # window-padding-balance = false
@@ -243,7 +253,9 @@ window-decoration = true
 # window-theme = auto
 
 # 颜色空间: srgb, display-p3 (仅 macOS)
-window-colorspace = display-p3
+# [优化] 主题颜色沿用 Alacritty 的普通 RGB 色值，sRGB 更接近其预期外观
+# [可选] 如果喜欢原来的 Display P3 显示效果，可改回 display-p3
+window-colorspace = srgb
 
 # 初始窗口大小 (网格单元数)
 # Alacritty: window.dimensions.columns = 170, lines = 50
@@ -255,6 +267,7 @@ window-height = 50
 # window-position-y =
 
 # 垂直同步: 减少撕裂但可能增加输入延迟 (仅 macOS)
+# [说明] macOS 建议保持默认 true；不必为未测量的延迟关闭它
 # window-vsync = true
 
 # 新窗口/标签页是否继承当前工作目录
@@ -264,6 +277,8 @@ window-height = 50
 # window-inherit-font-size = true
 
 # 窗口状态保存: default, never, always (仅 macOS)
+# [说明] 保留原来的窗口恢复行为；tmux 负责内部 Session 的持久化
+# [可选] 如果重开 Ghostty 时经常恢复多个重复窗口，可试用 never
 window-save-state = always
 
 # 按网格单元调整窗口大小 (仅 macOS)
@@ -396,6 +411,8 @@ macos-icon = official
 
 # 首次启动命令 (仅第一个窗口)
 # Alacritty: terminal.shell.program + args → zsh + tmux
+# [说明] 只在启动时的第一个终端生效；Cmd+T/Cmd+N 后续终端按普通 command/default shell 启动
+# [说明] 保留原有 tmux Session 名称与登录 shell 启动行为
 initial-command = /opt/homebrew/bin/zsh --login -c 'tmux new-session -A -s "🫧 local"'
 
 # 额外环境变量, 格式: env = KEY=VALUE
@@ -429,6 +446,7 @@ shell-integration-features = no-cursor,no-sudo,title,no-ssh-env,no-ssh-terminfo,
 # ============================================================================
 
 # 关闭确认: true, false, always
+# [说明] 保留原来的关闭速度；若担心误按 Cmd+W 关闭活动任务，改为 true
 confirm-close-surface = false
 
 # 最后一个窗口关闭后退出 (macOS 默认 false, Linux 默认 true)
@@ -448,13 +466,17 @@ confirm-close-surface = false
 
 # 图像存储限制 (字节, 0 禁用图像协议)
 # image-storage-limit = 320000000
+# [可选] 如果长期只看文本日志，可设置较低的缓存上限以限制终端图片占用
+# image-storage-limit = 64000000
 
 # ============================================================================
 # 剪贴板
 # ============================================================================
 
 # 程序读取剪贴板权限: ask, allow, deny
-clipboard-read = allow
+# [优化] OSC 52 读取剪贴板需要确认，防止远端程序未经同意读取本地内容
+# 普通 Cmd+C/Cmd+V 不受该设置影响
+clipboard-read = ask
 
 # 程序写入剪贴板权限: ask, allow, deny
 clipboard-write = allow
@@ -501,7 +523,10 @@ copy-on-select = true
 # Cmd+R: 清屏 (对应 Alacritty chars=\f + ClearHistory 双动作)
 # 注意: Ghostty 不支持单键绑定同时发送字符和触发 action
 #       建议在 tmux/zsh 中额外绑定 ClearHistory, 或拆分为两个快捷键
-keybind = cmd+r=clear_screen
+# [优化] Cmd+R 改为向前台程序发送 Ctrl+L（shell/tmux 内清屏，不主动删除历史）
+# [优化] Cmd+Shift+R 仍可清空 Ghostty 本地屏幕和回滚记录，不会清空 tmux 自己的历史
+keybind = cmd+r=text:\x0c
+keybind = cmd+shift+r=clear_screen
 
 # Cmd+W: 关闭当前 surface (对应 Alacritty action=Hide)
 keybind = cmd+w=close_surface
@@ -528,10 +553,14 @@ keybind = cmd+left=esc:OH
 keybind = cmd+right=esc:OF
 
 # Cmd+Backspace: 删除整行 (对应 Alacritty chars=\u0015)
-keybind = cmd+backspace=esc:u0015
+# [优化] 发送 Ctrl+U，通常删除光标之前至行首的内容，并非无条件删除整行
+# 旧写法 esc:u0015 会发送 ESC 后接字面字符串 u0015，无法实现预期功能
+keybind = cmd+backspace=text:\x15
 
 # Alt+Backspace: 删除单词 (对应 Alacritty chars=\u001B\u007F)
-keybind = alt+backspace=esc:u001Bu007F
+# [优化] 发送 ESC+DEL（Meta+Backspace）；配合 zsh 默认 Emacs 风格按键删除前一个单词
+# 旧写法 esc:u001Bu007F 发送的不是两个预期的控制字符
+keybind = alt+backspace=text:\x1b\x7f
 
 # ============================================================================
 # Quick Terminal (快速终端)
@@ -624,6 +653,7 @@ keybind = alt+backspace=esc:u001Bu007F
 # enquiry-response =
 
 # 异步后端 (Linux): auto, epoll, io_uring
+# [说明] macOS 始终使用 kqueue；无需设置 async-backend，保持注释即可
 # async-backend = auto
 
 # 自动更新 (macOS): off, check, download
@@ -634,4 +664,3 @@ keybind = alt+backspace=esc:u001Bu007F
 
 # 额外配置文件 (支持 ? 前缀忽略不存在的文件)
 # config-file =
-

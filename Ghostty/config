@@ -214,7 +214,7 @@ window-padding-x = 16
 # 垂直内边距 (像素), 可用逗号分隔设置上下不同值
 # Alacritty: window.padding.y = 26
 # [优化] 与左右留白统一为 16px；原值 26,26 可随时恢复
-window-padding-y = 26,26
+window-padding-y = 16,16
 
 # 自动平衡四边多余空间
 # window-padding-balance = false

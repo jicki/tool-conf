@@ -14,6 +14,7 @@
 
 # 主字体, 使用 `ghostty +list-fonts` 查看可用字体
 font-family = Monaco Nerd Font
+font-family = PingFang SC
 #font-family = GeistMono Nerd Font Mono
 
 # 粗体/斜体/粗斜体字体 (留空则自动从主字体查找变体)
@@ -62,7 +63,7 @@ font-thicken = true
 # 加粗笔画强度 (0-255), 仅在 font-thicken=true 时生效
 # [优化] 原值 255 为最强加粗，15pt Monaco Nerd Font 可能显得过重；96 为建议起点
 # [可选] 偏好更粗的字体可在 96-160 之间调整；或恢复原值 255
-font-thicken-strength = 255
+font-thicken-strength = 160
 
 # 字体整形断点, 用于控制连字行为, 可用值: cursor
 # font-shaping-break = cursor

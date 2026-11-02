@@ -63,7 +63,7 @@ font-thicken = true
 # 加粗笔画强度 (0-255), 仅在 font-thicken=true 时生效
 # [优化] 原值 255 为最强加粗，15pt Monaco Nerd Font 可能显得过重；96 为建议起点
 # [可选] 偏好更粗的字体可在 96-160 之间调整；或恢复原值 255
-font-thicken-strength = 160
+font-thicken-strength = 200
 
 # 字体整形断点, 用于控制连字行为, 可用值: cursor
 # font-shaping-break = cursor

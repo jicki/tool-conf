@@ -527,11 +527,13 @@ keybind = cmd+left=esc:OH
 # Cmd+Right: 行尾 (对应 Alacritty AppCursor 模式 chars=\u001BOF)
 keybind = cmd+right=esc:OF
 
-# Cmd+Backspace: 删除整行 (对应 Alacritty chars=\u0015)
-keybind = cmd+backspace=esc:u0015
+# [优化] 发送 Ctrl+U，通常删除光标之前至行首的内容，并非无条件删除整行
+# 旧写法 esc:u0015 会发送 ESC 后接字面字符串 u0015，无法实现预期功能
+keybind = cmd+backspace=text:\x15
 
-# Alt+Backspace: 删除单词 (对应 Alacritty chars=\u001B\u007F)
-keybind = alt+backspace=esc:u001Bu007F
+# [优化] 发送 ESC+DEL（Meta+Backspace）；配合 zsh 默认 Emacs 风格按键删除前一个单词
+# 旧写法 esc:u001Bu007F 发送的不是两个预期的控制字符
+keybind = alt+backspace=text:\x1b\x7f
 
 # ============================================================================
 # Quick Terminal (快速终端)

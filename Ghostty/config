@@ -11,7 +11,7 @@
 
 # 主字体, 使用 `ghostty +list-fonts` 查看可用字体
 font-family = Monaco Nerd Font
-#font-family = GeistMono Nerd Font Mono
+font-family = PingFang SC
 
 # 粗体/斜体/粗斜体字体 (留空则自动从主字体查找变体)
 # font-family-bold =

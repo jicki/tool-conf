@@ -1,5 +1,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# 当前目录扫描超时，单位毫秒
+scan_timeout = 200
+
+# 外部命令执行超时，单位毫秒
+command_timeout = 1000
+
+# 不跟踪符号链接，避免扫描网络挂载目录
+follow_symlinks = false
+
 add_newline = false
 
 format = """
